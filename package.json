@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/WinterDawn/courseflow/issues"
   },
-  "homepage": "https://github.com/WinterDawn/courseflow#readme"
+  "homepage": "https://github.com/WinterDawn/courseflow#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
