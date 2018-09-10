@@ -1,26 +1,16 @@
 {
   "name": "courseflow",
-  "version": "1.0.0",
-  "description": "## Installation",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WinterDawn/courseflow.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/WinterDawn/courseflow/issues"
-  },
-  "homepage": "https://github.com/WinterDawn/courseflow#readme",
   "dependencies": {
-    "express": "^4.16.3",
-    "mongoose": "^5.2.12"
-  },
-  "devDependencies": {
-    "eslint": "^5.5.0"
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
   }
 }
