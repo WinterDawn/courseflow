@@ -1,0 +1,114 @@
+html
+    width 100%
+    height 100%
+    overflow hidden
+
+body
+    font-family "Helvetica Neue", Helvetica, Microsoft Yahei
+    position relative
+    width 100%
+    height 100%
+    background url('https://oneclassblog.com/wp-content/uploads/2017/09/CUBoulder.jpg') center center no-repeat
+    background-size cover
+
+div
+    text-align center
+    vertical-align middle
+
+.panel
+    margin 120px auto 60px
+    text-align center
+    background-color white
+    width 500px
+    border-radius 10px
+    padding 1px
+    transition box-shadow .30s
+    &:hover
+        box-shadow #fff 5px 5px 25px
+
+input[type=text], input[type=password]
+    padding 5px
+    border 2px solid #ccc
+    -webkit-border-radius 5px
+    border-radius 5px
+
+input[type=text]:focus, input[type=password]:focus
+    border-color #333
+
+input[type=submit]
+    color white
+    background rgb(48, 35, 174)
+    font-size 16px
+    line-height 38px
+    height 38px
+    padding 0 20px
+    border-radius 3px
+    display inline-block
+    text-decoration none
+    transition background .15s
+
+input[type=submit]:hover
+    background-color rgb(81, 67, 224)
+
+.label
+    display inline-block
+    text-align right
+    clear both
+    float left
+    margin-right 15px
+
+span
+    display block
+    padding-bottom 5px
+
+.menubar
+    background-color black
+    height 50px
+
+.navbar
+    overflow hidden
+    background-color #333
+    font-family Arial
+    a
+        float left
+        font-size 16px
+        color white
+        text-align center
+        padding 14px 16px
+        text-decoration none
+
+.dropdown
+    float left
+    overflow hidden
+    .dropbtn
+        font-size 16px
+        border none
+        outline none
+        color white
+        padding 14px 16px
+        background-color inherit
+        font-family inherit
+        margin 0
+    &:hover
+        .dropdown-content
+            display block
+
+.navbar a:hover, .dropdown:hover .dropbtn
+    background-color purple
+
+.dropdown-content
+    display none
+    position absolute
+    background-color #f9f9f9
+    min-width 160px
+    box-shadow 0px 8px 16px 0px rgba(0,0,0,0.2)
+    z-index 1
+    a
+        float none
+        color black
+        padding 12px 16px
+        text-decoration none
+        display block
+        text-align left
+        &:hover
+            background-color #ddd

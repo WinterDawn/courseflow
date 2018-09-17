@@ -1,5 +1,41 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    |   
+    title CourseFlow Developer
+    |   
+    style 
+      include style.css  
+  body
+    .menubar
+      div
+        ul
+          li
+            a.rButtons(href="/user/logout", style="float: right; padding-right: 20px;")
+              p Logout
+      |     
+      br
+      br
+    |   
+    div
+      .panel
+        h1(style="text-align: center") CourseFlow
+        |         
+        form(action="http://127.0.0.1:7744/login")
+          // method="post" name="login">
+          span
+            .formsection
+              label(for="username") Username
+              |               
+              input#username(type="text", name="username")
+          |           
+          span
+            .formsection
+              label(for="password") Password
+              |               
+              input#password(type="password", name="password")
+          |               
+          br
+          |               
+          input(type="submit", value="Log In")
