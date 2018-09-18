@@ -1,41 +1,190 @@
 doctype html
-html(lang="en")
+html(lang='en')
   head
-    meta(charset="UTF-8")
-    |   
+    meta(charset='UTF-8')
     title CourseFlow Developer
-    |   
-    style 
-      include style.css  
+    style.
+      html { width: 100%; height:100%; overflow:hidden; }
+      body {
+      font-family: "Helvetica Neue", Helvetica, Microsoft Yahei;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: url('https://oneclassblog.com/wp-content/uploads/2017/09/CUBoulder.jpg') center center no-repeat;
+      background-size: cover;
+      }
+      div{
+      text-align: center;
+      vertical-align: middle;
+      }
+      /*Button Two*/
+      .button-two {
+      border-radius: 4px;
+      background-color:#333;
+      border: none;
+      padding: 12px;
+      width: 135px;
+      transition: all 0.5s;
+      }
+      .button-two span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+      color: white;
+      }
+      .button-two span:after {
+      content: '»';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -10px;
+      transition: 0.5s;
+      font-size: -50px;
+      }
+      .button-two:hover span {
+      padding-right: 25px;
+      }
+      .button-two:hover span:after {
+      opacity: 1;
+      right: 0;
+      }
+      .panel {
+      margin: 120px auto 60px;
+      text-align: center;
+      background-color: white;
+      width: 500px;
+      border-radius: 10px;
+      padding: 1px;
+      transition: box-shadow .30s;
+      }
+      .panel:hover{
+      box-shadow: #fff 5px 5px 25px;
+      }
+      input[type=text], input[type=password]{
+      padding:5px;
+      border:2px solid #ccc;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      }
+      input[type=text]:focus, input[type=password]:focus {
+      border-color:#333;
+      }
+      input[type=submit] {
+      color: white;
+      background: rgb(48, 35, 174);
+      font-size: 16px;
+      line-height: 38px;
+      padding: 0 20px;
+      height: 38px;
+      margin-bottom: 18px;
+      padding: 0 20px;
+      border-radius: 3px;
+      display: inline-block;
+      text-decoration: none;
+      transition: background .15s;
+      }
+      input[type=submit]:hover {
+      background-color: rgb(81, 67, 224);
+      }
+      .label {
+      display: inline-block;
+      text-align: right;
+      clear: both;
+      float:left;
+      margin-right:15px;
+      }
+      span {
+      display: block;
+      padding-bottom: 5px;
+      }
+      .menubar{
+      background-color: black;
+      height: 44px;
+      margin-left: -20px;
+      margin-top: -15px;
+      }
+      .navbar {
+      overflow: hidden;
+      background-color: #333;
+      font-family: Arial;
+      }
+      /* Links inside the navbar */
+      .navbar a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      }
+      /* The dropdown container */
+      .dropdown {
+      float: left;
+      overflow: hidden;
+      }
+      /* Dropdown button */
+      .dropdown .dropbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit; /* Important for vertical align on mobile phones */
+      margin: 0; /* Important for vertical align on mobile phones */
+      }
+      /* Add a red background color to navbar links on hover */
+      .navbar a:hover, .dropdown:hover .dropbtn {
+      background-color: purple;
+      }
+      /* Dropdown content (hidden by default) */
+      .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      }
+      /* Links inside the dropdown */
+      .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+      }
+      /* Add a grey background color to dropdown links on hover */
+      .dropdown-content a:hover {
+      background-color: #ddd;
+      }
+      /* Show the dropdown menu on hover */
+      .dropdown:hover .dropdown-content {
+      display: block;
+      }
   body
     .menubar
       div
         ul
           li
-            a.rButtons(href="/user/logout", style="float: right; padding-right: 20px;")
-              p Logout
-      |     
+            button.button-two("='', href='/user/logout', style='float: right; padding-right: 20px;')
+              span Log out
       br
       br
-    |   
     div
       .panel
-        h1(style="text-align: center") CourseFlow
-        |         
-        form(action="http://127.0.0.1:7744/login")
+        h1(style='text-align: center') CourseFlow
+        form(action='http://127.0.0.1:7744/login')
           // method="post" name="login">
           span
             .formsection
-              label(for="username") Username
-              |               
-              input#username(type="text", name="username")
-          |           
+              label(for='username') Username
+              input#username(type='text', name='username')
           span
             .formsection
-              label(for="password") Password
-              |               
-              input#password(type="password", name="password")
-          |               
+              label(for='password') Password
+              input#password(type='password', name='password')
           br
-          |               
-          input(type="submit", value="Log In")
+          input(type='submit', value='Log In')
