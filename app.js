@@ -43,9 +43,10 @@ app.get('/login',function (req,res) {
     var pwd=req.query.password;
     console.log(name)
     console.log('get name') 
-    var selectSQL = "select * from TESTUSER where USER_NAME = '"+name+"'and USER_PWD = '"+pwd+"'";
+    var selectSQL = "select * from TESTUSER where USER_NAME = '"+name+"'";
+    //and USER_PWD = '"+pwd+"'";
     connection.query(selectSQL,function (err,rs) {
-        if (err) throw  err;
+        if (err) throw err;
         console.log(rs);
         if (rs[0].USER_PWD == pwd) {
         	console.log('OK');
