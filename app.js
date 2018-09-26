@@ -6,20 +6,17 @@ var logger = require('morgan');
 var stylus = require('stylus');
 var mysql=require('mysql');
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-
-
 var connection = mysql.createConnection({
-    host     : '127.0.0.1',
+    host     : 'localhost',
     user     : 'root',
     password : '',
     database : 'courseflow',
-    port:'3306'
+    // port:'3306'
 });
 connection.connect();
 
@@ -46,12 +43,16 @@ app.get('/login',function (req,res) {
     var pwd=req.query.password;
     console.log(name)
     console.log('get name') 
-    var selectSQL = "select * from TESTUSER where USER_NAME = '"+name+"' and USER_PWD = '"+pwd+"'";
+    var selectSQL = "select * from TESTUSER where USER_NAME = '"+name+"'and USER_PWD = '"+pwd+"'";
     connection.query(selectSQL,function (err,rs) {
         if (err) throw  err;
         console.log(rs);
-        console.log('OK');
-        res.sendfile(__dirname + "/" + "OK.html" );
+        if (rs !== []) {
+        	console.log('OK');
+        	res.sendfile(__dirname + "/" + "OK.html" );
+        } else {
+        	res.sendfile(__dirname + "/" + "Fail.html" );
+        }
     })
 })
 
