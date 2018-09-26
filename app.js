@@ -47,7 +47,7 @@ app.get('/login',function (req,res) {
     connection.query(selectSQL,function (err,rs) {
         if (err) throw  err;
         console.log(rs);
-        if (rs !== []) {
+        if (rs[0].USER_PWD == pwd) {
         	console.log('OK');
         	res.sendfile(__dirname + "/" + "OK.html" );
         } else {
