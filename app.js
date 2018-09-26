@@ -48,10 +48,16 @@ app.get('/login',function (req,res) {
     connection.query(selectSQL,function (err,rs) {
         if (err) throw err;
         console.log(rs);
-        if (rs[0].USER_PWD == pwd) {
-        	console.log('OK');
-        	res.sendfile(__dirname + "/" + "OK.html" );
+        if (rs[0]) {
+        	console.log("1")
+        	if (rs[0].USER_PWD == pwd) {
+        		console.log('OK');
+        		res.sendfile(__dirname + "/" + "OK.html" );
+        	} else {
+        		res.sendfile(__dirname + "/" + "Fail.html" );
+        	}
         } else {
+        	console.log("2");
         	res.sendfile(__dirname + "/" + "Fail.html" );
         }
     })
