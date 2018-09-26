@@ -4,11 +4,28 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var stylus = require('stylus');
+var mysql=require('mysql');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+
+
+var connection = mysql.createConnection({
+    host     : '127.0.0.1',
+    user     : 'root',
+    password : '',
+    database : 'courseflow',
+    port:'3306'
+});
+connection.connect();
+
+// app.get('/',function (req,res) {
+//     res.sendfile(__dirname + "/" + "index.html" );
+// })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +40,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.get('/login',function (req,res) {
+    var name=req.query.name;
+    var pwd=req.query.pwd;
+    console.log(name)
+ 
+    var selectSQL = "select * from TESTUSER where USER_NAME = '"+name+"' and USER_PWD = '"+pwd+"'";
+    connection.query(selectSQL,function (err,rs) {
+        if (err) throw  err;
+        console.log(rs);
+        console.log('OK');
+        res.sendfile(__dirname + "/" + "OK.html" );
+    })
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
