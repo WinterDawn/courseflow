@@ -44,7 +44,7 @@ app.use('/users', usersRouter);
 app.get('/login',function (req,res) {
     var name=req.query.username;
     var pwd=req.query.password;
-    console.log(req)
+    console.log(name)
     console.log('get name') 
     var selectSQL = "select * from TESTUSER where USER_NAME = '"+name+"' and USER_PWD = '"+pwd+"'";
     connection.query(selectSQL,function (err,rs) {
