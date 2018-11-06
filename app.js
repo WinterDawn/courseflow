@@ -59,8 +59,12 @@ app.get('/', function(req, res, next){
   var sess = req.session;
   var loginUser = sess.loginUser;
   var isLogined = !!loginUser;
+  if(isLogined){
+    res.render('OK');
+  }else{
+    res.render('index')
+  }
 
-  res.render('OK');
 });
 
 
