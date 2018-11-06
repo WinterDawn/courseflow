@@ -55,13 +55,13 @@ app.use(session({
   }
 }));
 
-app.get('/', function(req, res){
+app.get('/temp', function(req, res){
   console.log('position 1')
   // var sess = req.session;
   // var loginUser = sess.loginUser;
   // var isLogined = !!loginUser;
   if(req.session.userName){
-    res.render('OK');
+    res.sendfile(__dirname + "/" + "OK.html" );
   }else{
     res.redirect('/')
   }
@@ -88,6 +88,7 @@ app.get('/login',function (req,res) {
               return res.json({ret_code: 2, ret_msg: 'fail to login'});        
             }
             req.session.userName = rs[0].USER_NAME; 
+            console.log(req.session)
             res.sendfile(__dirname + "/" + "OK.html" );            
           });
          } else {
@@ -110,7 +111,7 @@ app.get('/logout', function(req, res, next){
       return;
     }
     
-    req.session.userName = null;
+    //req.session.userName = '';
     res.clearCookie(identityKey);
     res.redirect('/');
   });
