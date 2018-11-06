@@ -98,6 +98,7 @@ app.get('/login',function (req,res) {
 });
 
 app.get('/logout', function(req, res, next){
+  console.log('logout')
   req.session.destroy(function(err) {
     if(err){
       res.json({ret_code: 2, ret_msg: 'fail to log out'});
