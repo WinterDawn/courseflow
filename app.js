@@ -60,10 +60,7 @@ app.get('/', function(req, res, next){
   var loginUser = sess.loginUser;
   var isLogined = !!loginUser;
 
-  res.render('index', {
-    isLogined: isLogined,
-    name: loginUser || ''
-  });
+  res.render('OK');
 });
 
 
@@ -83,10 +80,9 @@ app.get('/login',function (req,res) {
 
            req.session.regenerate(function(err) {
             if(err){
-              return res.json({ret_code: 2, ret_msg: 'login successfully'});        
+              return res.json({ret_code: 2, ret_msg: 'fail to login'});        
             }
-            req.session.loginUser = rs[0].USER_NAME;
-            res.json({ret_code: 0, ret_msg: 'fail to login'});             
+            req.session.loginUser = rs[0].USER_NAME;             
           });
            res.sendfile(__dirname + "/" + "OK.html" );
          } else {
