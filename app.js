@@ -51,18 +51,19 @@ app.use(session({
   saveUninitialized: false,  
   resave: false,  
   cookie: {
-    maxAge: 1000 * 1000  
+    maxAge: 60 * 1000  
   }
 }));
 
 app.get('/', function(req, res, next){
+  console.log('position 1')
   var sess = req.session;
   var loginUser = sess.loginUser;
   var isLogined = !!loginUser;
   if(isLogined){
     res.render('OK');
   }else{
-    res.render('index')
+    res.redirect('/')
   }
 
 });
