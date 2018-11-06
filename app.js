@@ -85,7 +85,7 @@ app.get('/login',function (req,res) {
             if(err){
               return res.json({ret_code: 2, ret_msg: 'login successfully'});        
             }
-            req.session.loginUser = user.name;
+            req.session.loginUser = rs[0].USER_NAME;
             res.json({ret_code: 0, ret_msg: 'fail to login'});             
           });
            res.sendfile(__dirname + "/" + "OK.html" );
