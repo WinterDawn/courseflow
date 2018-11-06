@@ -47,7 +47,7 @@ app.use('/users', usersRouter);
 app.use(session({
   name: identityKey,
   secret: 'chyingp', 
-  store: new FileStore(),  
+  // store: new FileStore(),  
   saveUninitialized: false,  
   resave: false,  
   cookie: {
@@ -55,12 +55,12 @@ app.use(session({
   }
 }));
 
-app.get('/', function(req, res, next){
+app.get('/', function(req, res){
   console.log('position 1')
-  var sess = req.session;
-  var loginUser = sess.loginUser;
-  var isLogined = !!loginUser;
-  if(isLogined){
+  // var sess = req.session;
+  // var loginUser = sess.loginUser;
+  // var isLogined = !!loginUser;
+  if(req.session.userName){
     res.render('OK');
   }else{
     res.redirect('/')
@@ -87,9 +87,9 @@ app.get('/login',function (req,res) {
             if(err){
               return res.json({ret_code: 2, ret_msg: 'fail to login'});        
             }
-            req.session.loginUser = rs[0].USER_NAME;             
+            req.session.userName = rs[0].USER_NAME; 
+            res.sendfile(__dirname + "/" + "OK.html" );            
           });
-           res.sendfile(__dirname + "/" + "OK.html" );
          } else {
            console.log('password incorrect')
            res.sendfile(__dirname + "/" + "Fail.html" );
@@ -110,7 +110,7 @@ app.get('/logout', function(req, res, next){
       return;
     }
     
-    // req.session.loginUser = null;
+    req.session.userName = null;
     res.clearCookie(identityKey);
     res.redirect('/');
   });
