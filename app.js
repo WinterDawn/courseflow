@@ -1,6 +1,8 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var stylus = require('stylus');
@@ -10,6 +12,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+var identityKey = 'skey';
+
+
 
 var connection = mysql.createConnection({
     host     : 'localhost',
@@ -38,30 +44,76 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.use(session({
+  name: identityKey,
+  secret: 'chyingp', 
+  store: new FileStore(),  
+  saveUninitialized: false,  
+  resave: false,  
+  cookie: {
+    maxAge: 1000 * 1000  
+  }
+}));
+
+app.get('/', function(req, res, next){
+  var sess = req.session;
+  var loginUser = sess.loginUser;
+  var isLogined = !!loginUser;
+
+  res.render('index', {
+    isLogined: isLogined,
+    name: loginUser || ''
+  });
+});
+
+
 app.get('/login',function (req,res) {
-    var name=req.query.username;
-    var pwd=req.query.password;
-    console.log(name)
-    console.log('get name') 
-    var selectSQL = "select * from TESTUSER where USER_NAME = '"+name+"'";
-    //and USER_PWD = '"+pwd+"'";
-    connection.query(selectSQL,function (err,rs) {
+  var name=req.query.username;
+  var pwd=req.query.password;
+  var selectSQL = "select * from TESTUSER where USER_NAME = '"+name+"'";
+
+  connection.query(selectSQL,function (err,rs) {
         if (err) throw err;
         console.log(rs);
         if (rs[0]) {
-        	console.log("1")
-        	if (rs[0].USER_PWD == pwd) {
-        		console.log('OK');
-        		res.sendfile(__dirname + "/" + "OK.html" );
-        	} else {
-        		res.sendfile(__dirname + "/" + "Fail.html" );
-        	}
+         console.log("user exists")
+         if (rs[0].USER_PWD == pwd) {
+           console.log('login successfully');
+           var sess = req.session;
+
+           req.session.regenerate(function(err) {
+            if(err){
+              return res.json({ret_code: 2, ret_msg: 'login successfully'});        
+            }
+            req.session.loginUser = user.name;
+            res.json({ret_code: 0, ret_msg: 'fail to login'});             
+          });
+           res.sendfile(__dirname + "/" + "OK.html" );
+         } else {
+           console.log('password incorrect')
+           res.sendfile(__dirname + "/" + "Fail.html" );
+         }
         } else {
-        	console.log("2");
-        	res.sendfile(__dirname + "/" + "Fail.html" );
+         console.log("user doesn't exist");
+         res.sendfile(__dirname + "/" + "Fail.html" );
         }
     })
-})
+
+});
+
+app.get('/logout', function(req, res, next){
+  req.session.destroy(function(err) {
+    if(err){
+      res.json({ret_code: 2, ret_msg: 'fail to log out'});
+      return;
+    }
+    
+    // req.session.loginUser = null;
+    res.clearCookie(identityKey);
+    res.redirect('/');
+  });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
