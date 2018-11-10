@@ -1,0 +1,22 @@
+version: '3.3'
+volumes:
+  data:
+services:
+  mysql:
+    image: mysql:5.6
+    ports:
+        - "3306:3306"
+    volumes:
+      - ./config/mysql:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=incuvate
+      
+  nodejs:
+    build: .
+    volumes:
+        - ./:/usr/src/app
+    ports:
+        - "3000:8000"
+    depends_on:
+      - mysql
