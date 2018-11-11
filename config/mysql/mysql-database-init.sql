@@ -5,7 +5,7 @@ CREATE TABLE incuvate.users (
 	PRIMARY KEY (id)
 );
 
-INSERT INTO incuvate.users (name) VALUES ('a'), ('b'), ('c'), ('d');
+INSERT INTO incuvate.users (name) VALUES ('a'), ('b'), ('c'), ('d'), ('e');
 
 
 -- SELECT	* FROM incuvate.users;

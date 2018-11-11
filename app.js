@@ -6,10 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var eraseEvents = require('./routes/admin');
-var events = require('./routes/health');
-var actor = require('./routes/user');
-var actor = require('./routes/courses');
+//var user = require('./routes/user');
+var courses = require('./routes/courses');
 
 var app = express();
 
@@ -27,9 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', index);
-app.use('/admin', setup);
-app.use('/health', health);
-app.use('/user', user);
+// app.use('/user', user);
 app.use('/courses', courses);
 
 // catch 404 and forward to error handler
