@@ -68,6 +68,9 @@ app.get('/temp', function(req, res){
 
 });
 
+app.get('/graph',function(req, res){
+  res.sendfile(__dirname + "/" + "OK2.html" );
+});
 
 app.get('/login',function (req,res) {
   var name=req.query.username;
@@ -89,7 +92,7 @@ app.get('/login',function (req,res) {
             }
             req.session.userName = rs[0].USER_NAME; 
             console.log(req.session)
-            res.sendfile(__dirname + "/" + "OK.html" );            
+            res.render(profile);            
           });
          } else {
            console.log('password incorrect')
