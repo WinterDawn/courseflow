@@ -104,7 +104,7 @@ app.get('/login',function (req,res) {
             }
             req.session.userName = rs[0].USER_NAME; 
             console.log(req.session)
-            res.render(profile);            
+            res.redirect('/users');            
           });
          } else {
            console.log('password incorrect')
