@@ -148,6 +148,11 @@ hr {
   margin-right: -600px;
   padding: 167px;
 }
+#cy {
+  height: 500px;
+  width: 900px;
+  background-color: #f9f9f9;
+}
 .sidebar-overlay {
   visibility: hidden;
   position: fixed;

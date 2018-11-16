@@ -5,18 +5,31 @@
     <style type="text/css">
         /* cytoscape graph */
         #cy {
-            height: 300px;
-            width: 400px;
+            height: 400px;
+            width: 800px;
             background-color: #f9f9f9;
         }
     </style>
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/cytoscape/2.3.16/cytoscape.min.js"></script>
-    <script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-qtip/2.7.0/cytoscape-qtip.js"></script>
+    <!-- <script src="./cytoscape-qtip.js"></script> -->
+    <!-- <script src="code.js"></script> -->
+    
+
+
+        <script>
         $(function(){
-            cytoscape({
+            var cy = cytoscape({
               container: document.getElementById('cy'),
               style: [
+                {selector: 'node',css: {
+                  'text-valign': 'center',
+                  'text-halign': 'center'
+                }},
                 { selector: 'node[label = "Finished"]', 
                   css: {'shape':'square','background-color': '#6FB1FC', 'content': 'data(name)'}
                 },
@@ -37,11 +50,29 @@
                   {data: {id: '3000', name: 'Algorithm', label: 'Course'}}
                 ],
                 edges: [
-                	{data: {source: '1300', target: '2270', relationship: 'prereq'}},
-                	{data: {source: '1300', target: '3000', relationship: 'prereq'}}
-                	]
+                  {data: {source: '1300', target: '2270', relationship: 'prereq'}},
+                  {data: {source: '1300', target: '3000', relationship: 'prereq'}}
+                  ]
               },
-              layout: { name: 'grid'} 
+              layout: {name: 'grid'}
+              // ready: function(){
+              //   window.cy = this;
+              // }
+            });
+
+            cy.nodes().qtip({
+              content: function(ele){ return 'Example qTip on ele ' + this.id() },
+              position: {
+                my: 'top center',
+                at: 'bottom center'
+              },
+              style: {
+                classes: 'qtip-bootstrap',
+                tip: {
+                  width: 16,
+                  height: 8
+                }
+              }
             });
         });
     </script>
