@@ -72,6 +72,10 @@ app.get('/graph',function(req, res){
   res.sendfile(__dirname + "/" + "OK2.html" );
 });
 
+app.get('/mycuinfo',function(req, res){
+  res.redirect('http://mycuinfo.colorado.edu');
+});
+
 app.get('/login',function (req,res) {
   var name=req.query.username;
   var pwd=req.query.password;

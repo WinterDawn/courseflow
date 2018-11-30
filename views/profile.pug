@@ -48,7 +48,7 @@ aside#sidebar.sidebar.sidebar-default.open(role='navigation')
           a(href='#' tabindex='-1')
             | What if
         li
-          a(href='#' tabindex='-1')
+          a(href='/mycuinfo' tabindex='-1')
             | MyCUInfo
         li
           a(href='#' tabindex='-1')
@@ -208,14 +208,14 @@ script.
   ],
   elements: {
   nodes: [
-  {data: {id: '1300', name: 'Data Structure', label: 'Finished'}},
-  {data: {id: '2270', name: 'Computer System', label: 'InProgress'}},
-  {data: {id: '2400', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3104', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3155', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3287', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3403', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3753', name: 'Algorithm', label: 'Course'}}
+  {data: {id: '1300', major: 'CSCI', name: 'Data Structure', label: 'Finished'}},
+  {data: {id: '2270', major: 'CSCI', name: 'Computer System', label: 'InProgress'}},
+  {data: {id: '2400', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3104', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3155', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3287', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3403', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3753', major: 'CSCI', name: 'Algorithm', label: 'Course'}}
 
   ],
   edges: [
@@ -236,7 +236,7 @@ script.
   // }
   });
   cy.nodes().qtip({
-  content: function(ele){ return '<h1>Course</h1>' + this.id() + '</br> ' +this.data('name') },
+  content: function(ele){ return '<h1>Course</h1>' + this.data('major')+' ' + this.id() + '</br> ' +this.data('name') },
   position: {
   my: 'top center',
   at: 'bottom center'
