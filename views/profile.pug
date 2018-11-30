@@ -236,7 +236,7 @@ script.
   // }
   });
   cy.nodes().qtip({
-  content: function(ele){ return 'Example qTip on ele ' + this.id() },
+  content: function(ele){ return '<h1>Course</h1>' + this.id() + '</br> ' +this.data('name') },
   position: {
   my: 'top center',
   at: 'bottom center'

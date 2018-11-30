@@ -61,17 +61,25 @@
             });
 
             cy.nodes().qtip({
-              content: function(ele){ return 'Example qTip on ele ' + this.id() },
-              position: {
-                my: 'top center',
-                at: 'bottom center'
+              // content: function(ele){ return 'Example qTip on ele ' + this },
+              // position: {
+              //   my: 'top center',
+              //   at: 'bottom center'
+              // },
+              // style: {
+              //   classes: 'qtip-bootstrap',
+              //   tip: {
+              //     width: 16,
+              //     height: 8
+              //   }
+              // }
+              content: {
+                text: 'I really like owls!',
+                title: 'I have a button to my right!',
+                button: true
               },
-              style: {
-                classes: 'qtip-bootstrap',
-                tip: {
-                  width: 16,
-                  height: 8
-                }
+              hide: {
+                event: 'click'
               }
             });
         });

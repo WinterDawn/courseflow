@@ -69,18 +69,6 @@ app.get('/temp', function(req, res){
 });
 
 app.get('/graph',function(req, res){
-  res.json({
-                nodes: [
-                  {data: {id: '1300', name: 'Data Structure', label: 'Finished'}},
-                  {data: {id: '2270', name: 'Computer System', label: 'InProgress'}},
-                  {data: {id: '3000', name: 'Algorithm', label: 'Course'}}
-                ],
-                edges: [
-                  {data: {source: '1300', target: '2270', relationship: 'prereq'}},
-                  {data: {source: '1300', target: '3000', relationship: 'prereq'}}
-                  ]
-              }
-    )
   res.sendfile(__dirname + "/" + "OK2.html" );
 });
 
