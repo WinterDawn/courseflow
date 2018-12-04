@@ -146,9 +146,14 @@ hr {
   border-top: 25px solid #ccc;
   margin: 0em 0;
   margin-right: -600px;
-  padding: 167px;
+  padding: 3px;
 }
 #cy {
+  height: 500px;
+  width: 900px;
+  background-color: #f9f9f9;
+}
+#cy2 {
   height: 500px;
   width: 900px;
   background-color: #f9f9f9;

@@ -88,6 +88,7 @@ aside#sidebar.sidebar.sidebar-default.open(role='navigation')
   //hr(id="cy")
   div(id="cy")
   hr
+  div(id="cy2")
 script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
 // <script  src="js/index.js"></script>
@@ -236,6 +237,72 @@ script.
   // }
   });
   cy.nodes().qtip({
+  content: function(ele){ return '<h1>Course</h1>' + this.data('major')+' ' + this.id() + '</br> ' +this.data('name') },
+  position: {
+  my: 'top center',
+  at: 'bottom center'
+  },
+  style: {
+  classes: 'qtip-bootstrap',
+  tip: {
+  width: 16,
+  height: 8
+  }
+  }
+  });
+  });
+
+  $(function(){
+  var cy2 = cytoscape({
+  container: document.getElementById('cy2'),
+  style: [
+  {selector: 'node',css: {
+  'text-valign': 'center',
+  'text-halign': 'center'
+  }},
+  { selector: 'node[label = "Finished"]',
+  css: {'shape':'square','background-color': '#6FB1FC', 'content': 'data(id)'}
+  },
+  { selector: 'node[label = "InProgress"]',
+  css: {'background-color': '#35F535', 'content': 'data(id)'}
+  },
+  { selector: 'node[label = "Course"]',
+  css: {'background-color': '#F5A45D', 'content': 'data(id)'}
+  },
+  { selector: 'edge',
+  css: { 'target-arrow-shape': 'triangle'}
+  }
+  ],
+  elements: {
+  nodes: [
+  {data: {id: '1300', major: 'CSCI', name: 'Data Structure', label: 'Finished'}},
+  {data: {id: '2270', major: 'CSCI', name: 'Computer System', label: 'InProgress'}},
+  {data: {id: '2400', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3104', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3155', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3287', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3403', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '3753', major: 'CSCI', name: 'Algorithm', label: 'Course'}}
+
+  ],
+  edges: [
+  {data: {source: '1300', target: '2270', relationship: 'prereq'}},
+  {data: {source: '2270', target: '2400', relationship: 'prereq'}},
+  {data: {source: '2270', target: '3104', relationship: 'prereq'}},
+  {data: {source: '2270', target: '3155', relationship: 'prereq'}},
+  {data: {source: '2270', target: '3287', relationship: 'prereq'}},
+  {data: {source: '2270', target: '3403', relationship: 'prereq'}},
+  {data: {source: '2400', target: '3403', relationship: 'prereq'}},
+  {data: {source: '2270', target: '3753', relationship: 'prereq'}},
+  {data: {source: '2400', target: '3753', relationship: 'prereq'}}
+  ]
+  },
+  layout: {name: 'grid'}
+  // ready: function(){
+  //   window.cy2 = this;
+  // }
+  });
+  cy2.nodes().qtip({
   content: function(ele){ return '<h1>Course</h1>' + this.data('major')+' ' + this.id() + '</br> ' +this.data('name') },
   position: {
   my: 'top center',
