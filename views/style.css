@@ -93,12 +93,6 @@ div{
   display: block;
   padding-bottom: 5px;
   }
-  .menubar{
-  background-color: black;
-  height: 44px;
-  margin-left: -20px;
-  margin-top: -15px;
-  }
   .navbar {
   overflow: hidden;
   background-color: #333;

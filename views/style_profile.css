@@ -89,6 +89,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.menubar{
+  background-color: black;
+  height: 44px;
+  margin-left: -20px;
+  margin-top: -15px;
+  }
 .md {
   line-height: inherit;
   vertical-align: bottom;
