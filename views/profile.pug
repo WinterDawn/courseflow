@@ -24,7 +24,7 @@ head
       div
         ul
           li
-            button.button-two(href='/logout', style='float: right; padding-right: 20px;')
+            button.button-two(href='http://127.0.0.1:3000/logout', style='float: right; padding-right: 20px;')
               span Log out
       br
       br
@@ -77,7 +77,7 @@ aside#sidebar.sidebar.sidebar-default.open(role='navigation')
       a(href='#')
         // <i class="sidebar-icon md-drafts"></i>
         | Junior
-    li.divider
+    //li.divider
     li.dropdown
       a.ripple-effect.dropdown-toggle(href='#' data-toggle='dropdown')
         | Majors
@@ -88,7 +88,7 @@ aside#sidebar.sidebar.sidebar-default.open(role='navigation')
             | Computer Science
             span.sidebar-badge 12
         li
-          a(href='#' tabindex='-1')
+          a(href='#' onclick="return compare();" tabindex='-1')
             | Mechanical Engineering
             span.sidebar-badge 0
     li
@@ -217,14 +217,14 @@ script.
   ],
   elements: {
   nodes: [
-  {data: {id: '1300', major: 'CSCI', name: 'Data Structure', label: 'Finished'}},
-  {data: {id: '2270', major: 'CSCI', name: 'Computer System', label: 'InProgress'}},
-  {data: {id: '2400', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
+  {data: {id: '1300', major: 'CSCI', name: 'Intro to Computer Science', label: 'Finished'}},
+  {data: {id: '2270', major: 'CSCI', name: 'Data Structure', label: 'InProgress'}},
+  {data: {id: '2400', major: 'CSCI', name: 'Computer Science', label: 'Course'}},
   {data: {id: '3104', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3155', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3287', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3403', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3753', major: 'CSCI', name: 'Algorithm', label: 'Course'}}
+  {data: {id: '3155', major: 'CSCI', name: 'Principal of Programming Language', label: 'Course'}},
+  {data: {id: '3287', major: 'CSCI', name: 'Data system', label: 'Course'}},
+  {data: {id: '3434', major: 'CSCI', name: 'Theory of Computation', label: 'Course'}},
+  {data: {id: '3753', major: 'CSCI', name: 'Operating System', label: 'Course'}}
 
   ],
   edges: [
@@ -233,13 +233,11 @@ script.
   {data: {source: '2270', target: '3104', relationship: 'prereq'}},
   {data: {source: '2270', target: '3155', relationship: 'prereq'}},
   {data: {source: '2270', target: '3287', relationship: 'prereq'}},
-  {data: {source: '2270', target: '3403', relationship: 'prereq'}},
-  {data: {source: '2400', target: '3403', relationship: 'prereq'}},
-  {data: {source: '2270', target: '3753', relationship: 'prereq'}},
+  {data: {source: '2400', target: '3434', relationship: 'prereq'}},
   {data: {source: '2400', target: '3753', relationship: 'prereq'}}
   ]
   },
-  layout: {name: 'grid'}
+  layout: {name: 'breadthfirst'}
   // ready: function(){
   //   window.cy = this;
   // }
@@ -260,7 +258,7 @@ script.
   });
   });
 
-  $(function(){
+  function compare(){
   var cy2 = cytoscape({
   container: document.getElementById('cy2'),
   style: [
@@ -324,4 +322,4 @@ script.
   }
   }
   });
-  });
+  };
