@@ -76,6 +76,15 @@ app.get('/mycuinfo',function(req, res){
   res.redirect('http://mycuinfo.colorado.edu');
 });
 
+app.get('/classsearch',function(req, res){
+  res.redirect('https://classes.colorado.edu');
+});
+
+app.get('/mycuhub',function(req, res){
+  res.redirect('https://mycuhub.force.com');
+});
+
+
 app.get('/login',function (req,res) {
   var name=req.query.username;
   var pwd=req.query.password;
