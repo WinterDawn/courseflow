@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('profile', { title: 'Express' });
 });
 
+router.get('/logout', function(req, res, next) {
+  console.log('hello')
+});
+
 module.exports = router;
