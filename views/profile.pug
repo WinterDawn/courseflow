@@ -81,7 +81,7 @@ aside#sidebar.sidebar.sidebar-default.open(role='navigation')
             span.sidebar-badge 12
         li
           a(href='#' onclick="return compare();" tabindex='-1')
-            | Mechanical Engineering
+            | Mathematics
             span.sidebar-badge 0
     li
     li
@@ -213,14 +213,14 @@ script.
   ],
   elements: {
   nodes: [
-  {data: {id: '1300', major: 'CSCI', name: 'Intro to Computer Science', label: 'Finished'}},
-  {data: {id: '2270', major: 'CSCI', name: 'Data Structure', label: 'InProgress'}},
-  {data: {id: '2400', major: 'CSCI', name: 'Computer Science', label: 'Course'}},
-  {data: {id: '3104', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3155', major: 'CSCI', name: 'Principal of Programming Language', label: 'Course'}},
-  {data: {id: '3287', major: 'CSCI', name: 'Data system', label: 'Course'}},
-  {data: {id: '3434', major: 'CSCI', name: 'Theory of Computation', label: 'Course'}},
-  {data: {id: '3753', major: 'CSCI', name: 'Operating System', label: 'Course'}}
+  {data: {id: '1300', major: 'CSCI',grade:'A-', name: 'Intro to Computer Science', label: 'Finished'}},
+  {data: {id: '2270', major: 'CSCI',grade:'A', name: 'Data Structure', label: 'Finished'}},
+  {data: {id: '2400', major: 'CSCI',grade:'B+', name: 'Computer Science', label: 'Finished'}},
+  {data: {id: '3104', major: 'CSCI',grade:'-', name: 'Algorithm', label: 'InProgress'}},
+  {data: {id: '3155', major: 'CSCI',grade:'-', name: 'Principal of Programming Language', label: 'Course'}},
+  {data: {id: '3287', major: 'CSCI',grade:'-', name: 'Data system', label: 'Course'}},
+  {data: {id: '3434', major: 'CSCI',grade:'-', name: 'Theory of Computation', label: 'Course'}},
+  {data: {id: '3753', major: 'CSCI',grade:'-', name: 'Operating System', label: 'Course'}}
 
   ],
   edges: [
@@ -239,7 +239,7 @@ script.
   // }
   });
   cy.nodes().qtip({
-  content: function(ele){ return '<h1>Course</h1>' + this.data('major')+' ' + this.id() + '</br> ' +this.data('name') },
+  content: function(ele){ return '<h1>Course</h1>' + this.data('major')+' ' + this.id() + '</br> ' +this.data('name')+'</br>Grade ' +this.data('grade') },
   position: {
   my: 'top center',
   at: 'bottom center'
@@ -277,35 +277,29 @@ script.
   ],
   elements: {
   nodes: [
-  {data: {id: '1300', major: 'CSCI', name: 'Data Structure', label: 'Finished'}},
-  {data: {id: '2270', major: 'CSCI', name: 'Computer System', label: 'InProgress'}},
-  {data: {id: '2400', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3104', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3155', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3287', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3403', major: 'CSCI', name: 'Algorithm', label: 'Course'}},
-  {data: {id: '3753', major: 'CSCI', name: 'Algorithm', label: 'Course'}}
+  {data: {id: '1300', major: 'MATH',grade:'A', name: 'Calculus 1', label: 'Finished'}},
+  {data: {id: '2001', major: 'MATH',grade:'A-', name: 'Intro to Discrete Math', label: 'Finished'}},
+  {data: {id: '2300', major: 'MATH',grade:'-', name: 'Calculus 2', label: 'Course'}},
+  {data: {id: '2400', major: 'MATH',grade:'-', name: 'Calculus 3', label: 'Course'}},
+  {data: {id: '3001', major: 'MATH',grade:'-', name: 'Analysis', label: 'Course'}},
+  {data: {id: '3430', major: 'MATH',grade:'-', name: 'Ordinary Differential Equations', label: 'Course'}}
 
   ],
   edges: [
-  {data: {source: '1300', target: '2270', relationship: 'prereq'}},
-  {data: {source: '2270', target: '2400', relationship: 'prereq'}},
-  {data: {source: '2270', target: '3104', relationship: 'prereq'}},
-  {data: {source: '2270', target: '3155', relationship: 'prereq'}},
-  {data: {source: '2270', target: '3287', relationship: 'prereq'}},
-  {data: {source: '2270', target: '3403', relationship: 'prereq'}},
-  {data: {source: '2400', target: '3403', relationship: 'prereq'}},
-  {data: {source: '2270', target: '3753', relationship: 'prereq'}},
-  {data: {source: '2400', target: '3753', relationship: 'prereq'}}
+  {data: {source: '1300', target: '2001', relationship: 'prereq'}},
+  {data: {source: '1300', target: '2300', relationship: 'prereq'}},
+  {data: {source: '2300', target: '2400', relationship: 'prereq'}},
+  {data: {source: '2300', target: '3001', relationship: 'prereq'}},
+  {data: {source: '2400', target: '3430', relationship: 'prereq'}}
   ]
   },
-  layout: {name: 'grid'}
+  layout: {name: 'breadthfirst'}
   // ready: function(){
   //   window.cy2 = this;
   // }
   });
   cy2.nodes().qtip({
-  content: function(ele){ return '<h1>Course</h1>' + this.data('major')+' ' + this.id() + '</br> ' +this.data('name') },
+  content: function(ele){ return '<h1>Course</h1>' + this.data('major')+' ' + this.id() + '</br> ' +this.data('name')+'</br>Grade '+this.data('grade') },
   position: {
   my: 'top center',
   at: 'bottom center'
