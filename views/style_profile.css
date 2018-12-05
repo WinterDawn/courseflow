@@ -147,12 +147,12 @@ body {
 }
 hr {
   display: block;
-  height: 3px;
+  height: 0px;
   border: 0;
   border-top: 25px solid #ccc;
   margin: 0em 0;
   margin-right: -600px;
-  padding: 3px;
+  padding: 0px;
 }
 #cy {
   height: 500px;
@@ -238,7 +238,7 @@ hr {
 .wrapper {
   display: table-cell;
   vertical-align: top;
-  width: 700px;
+  /*width: 700px;*/
 }
 .sidebar-stacked.open + .wrapper .constructor {
   margin-left: 280px;
